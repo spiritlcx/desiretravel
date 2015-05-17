@@ -1,23 +1,14 @@
 package com.desire.acquisition;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.desire.store.StoreManager;
 import com.desire.xml.MetaRead;
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-
 
 public class DbpediaExtractor extends SparqlExtractor {
 	public static void main(String [] args){

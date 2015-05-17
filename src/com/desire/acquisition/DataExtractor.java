@@ -1,6 +1,6 @@
 package com.desire.acquisition;
 
-public class DataExtractor {
+public class DataExtractor extends ApiExtractor{
 	public void extract(){
 		
 	}
