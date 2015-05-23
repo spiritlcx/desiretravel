@@ -12,6 +12,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.desire.store.StoreManager;
+import com.desire.store.Triple;
 import com.desire.transformer.DataTransformer;
 import com.desire.transformer.TransformerFactory;
 import com.desire.xml.MetaRead;
@@ -89,8 +90,10 @@ public class FlightExtractor extends ApiExtractor{
 			if(transformer == null){
 				System.out.println("the format is not supported");
 			}else{
-//				storeManager.store(transformer.transform());
-				transformer.transform();
+				storeManager.store(transformer.transform());
+//				ArrayList<Triple> triples = transformer.transform();
+				
+//				System.out.println(triples.size());
 			}
 
 		}
