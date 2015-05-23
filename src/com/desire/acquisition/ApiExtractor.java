@@ -8,6 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.apache.http.HttpRequest;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -19,7 +21,7 @@ public class ApiExtractor {
 	public ApiExtractor(){
 		
 	}
-	public void sendHttpRequest(String targetURL, String content){
+	public JSONObject sendHttpRequest(String targetURL, JSONObject content){
 		HttpURLConnection connection = null;  
 		  try {
 			  System.out.println(targetURL);
@@ -36,7 +38,7 @@ public class ApiExtractor {
 		    //Send request
 		    DataOutputStream wr = new DataOutputStream (
 		        connection.getOutputStream());
-		    wr.writeBytes(content);
+		    wr.writeBytes(content.toString());
 		    wr.close();
 
 		    //Get Response  
@@ -50,11 +52,10 @@ public class ApiExtractor {
 		    }
 		    rd.close();
 		    
-		    System.out.println(response);
-		    
+		    return new JSONObject(response.toString());
 		  } catch (Exception e) {
 		    e.printStackTrace();
-		    return;
+		    return null;
 		  } finally {
 		    if(connection != null) {
 		      connection.disconnect(); 

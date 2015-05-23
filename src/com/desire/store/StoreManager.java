@@ -17,7 +17,9 @@ import com.hp.hpl.jena.tdb.TDBFactory;
 public class StoreManager {
 	public static void main(String [] args){
 		StoreManager m = new StoreManager();
-		m.store("", "", "");
+		m.create();
+		m.read();
+//		m.store("", "", "");
 	}
 	Dataset dataset;
 	public void create(){
@@ -31,6 +33,7 @@ public class StoreManager {
 				filename = datalake.item(0).getTextContent();
 			}
 			//create TDb dataset
+
 			dataset =  TDBFactory.createDataset(filename);
 			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
@@ -51,6 +54,7 @@ public class StoreManager {
 		dataset.commit();
 	}
 	public void read(){
+		System.out.println("begin read");
 		dataset.begin(ReadWrite.READ);
 		Model model = dataset.getDefaultModel();
 		System.out.println(model.listSubjects().toList());

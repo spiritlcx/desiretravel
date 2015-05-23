@@ -4,22 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
 
-import org.apache.jena.atlas.json.JsonValue;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.desire.assist.JsonModel;
 import com.desire.xml.MetaRead;
+
 
 public class FlightExtractor extends ApiExtractor{
 	ArrayList<HashMap<String, String>> flightsources = new ArrayList<HashMap<String, String>>();
 	public static void main(String [] args){
+		
 		FlightExtractor m = new FlightExtractor();
 		m.exract("BCN", "Lon", "5/17/2015", "5/18/2015");
 	}
@@ -46,29 +44,19 @@ public class FlightExtractor extends ApiExtractor{
 						if(node.getNodeName().equals("request")){
 							NodeList childinfo = node.getChildNodes();
 							flightsource.put("url", childinfo.item(0).getTextContent());
-							for(int k = 1; k < childinfo.getLength(); k++){
-								Node info = childinfo.item(k);
-								switch(k){
-									case 1:
-										depature = info.getTextContent();
-										break;
-									case 2:
-										arrival = info.getTextContent();
-										break;
-									case 3:
-										outbound_date = info.getTextContent();
-										break;
-									case 4:
-										inbound_date = info.getTextContent();
-										break;
-								}								
-							}
+							flightsource.put("depature", childinfo.item(1).getTextContent());
+							flightsource.put("arrival", childinfo.item(2).getTextContent());
+							flightsource.put("outbound_date", childinfo.item(3).getTextContent());
+							flightsource.put("inbound_date", childinfo.item(4).getTextContent());
+						}else if(node.getNodeName().equals("response")){
+							NodeList childinfo = node.getChildNodes();
+							flightsource.put("format", childinfo.item(0).getTextContent());
+							flightsource.put("flightcode", childinfo.item(1).getTextContent());
+							flightsource.put("arrivaltime", childinfo.item(2).getTextContent());
+							flightsource.put("departuretime", childinfo.item(3).getTextContent());
+							flightsource.put("price", childinfo.item(4).getTextContent());
 						}
 					}
-					flightsource.put("depature", depature);
-					flightsource.put("arrival", arrival);
-					flightsource.put("outbound_date", outbound_date);
-					flightsource.put("inbound_date", inbound_date);
 				}
 				flightsources.add(flightsource);
 			}
@@ -83,14 +71,15 @@ public class FlightExtractor extends ApiExtractor{
 		while(it.hasNext()){
 			HashMap<String, String> flightsource = (HashMap<String, String>)it.next();
 
-			String jsonRequest = "{'"+flightsource.get("depature")+"':'" + depature +
-					"', '"+flightsource.get("arrival")+"':'" + arrival + "' , "
-					+ "'"+flightsource.get("outbound_date")+"':'"+outbound_date
-					+"' , '"+flightsource.get("inbound_date")+"': '"+inbound_date+"'}";
-
-			JSONObject jsonObject = new JSONObject(jsonRequest);
+			JSONObject jsonRequest = new JSONObject();
+			jsonRequest.put(flightsource.get("depature"),depature);
+			jsonRequest.put(flightsource.get("arrival"),arrival);
+			jsonRequest.put(flightsource.get("outbound_date"),outbound_date);
+			jsonRequest.put(flightsource.get("inbound_date"),inbound_date);
 			
-			sendHttpRequest(flightsource.get("url"), jsonRequest);
+			JSONObject response = sendHttpRequest(flightsource.get("url"), jsonRequest);
+//			JsonTransformer jsonTransformer
+		    System.out.println(response.get("trip"));
 		}
 	}
 }
