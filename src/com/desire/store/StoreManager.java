@@ -1,6 +1,8 @@
 package com.desire.store;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -51,6 +53,18 @@ public class StoreManager {
 		dataset.begin(ReadWrite.WRITE);
 		Model model = dataset.getDefaultModel();
 		model.add(model.createResource(subject), model.createProperty(predicate), object);
+		dataset.commit();
+	}
+	public void store(ArrayList<Triple> triples){
+		dataset.begin(ReadWrite.WRITE);
+		Model model = dataset.getDefaultModel();
+		
+		Iterator it = triples.iterator();
+		while(it.hasNext()){
+			Triple triple = (Triple)it.next();
+			model.add(model.createResource(triple.getSubject()), model.createProperty(triple.getPredicate()), triple.getObject());
+		}
+		
 		dataset.commit();
 	}
 	public void read(){

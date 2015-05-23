@@ -21,7 +21,7 @@ public class ApiExtractor {
 	public ApiExtractor(){
 		
 	}
-	public JSONObject sendHttpRequest(String targetURL, JSONObject content){
+	public String sendHttpRequest(String targetURL, JSONObject content){
 		HttpURLConnection connection = null;  
 		  try {
 			  System.out.println(targetURL);
@@ -52,7 +52,7 @@ public class ApiExtractor {
 		    }
 		    rd.close();
 		    
-		    return new JSONObject(response.toString());
+		    return response.toString();
 		  } catch (Exception e) {
 		    e.printStackTrace();
 		    return null;

@@ -11,11 +11,16 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.desire.store.StoreManager;
+import com.desire.transformer.DataTransformer;
+import com.desire.transformer.TransformerFactory;
 import com.desire.xml.MetaRead;
 
 
 public class FlightExtractor extends ApiExtractor{
 	ArrayList<HashMap<String, String>> flightsources = new ArrayList<HashMap<String, String>>();
+	StoreManager storeManager = new StoreManager();
+
 	public static void main(String [] args){
 		
 		FlightExtractor m = new FlightExtractor();
@@ -23,6 +28,7 @@ public class FlightExtractor extends ApiExtractor{
 	}
 	
 	public FlightExtractor(){
+		storeManager.create();
 		try{
 			MetaRead metaRead = new MetaRead();
 			Document doc = metaRead.createDocument();
@@ -77,9 +83,16 @@ public class FlightExtractor extends ApiExtractor{
 			jsonRequest.put(flightsource.get("outbound_date"),outbound_date);
 			jsonRequest.put(flightsource.get("inbound_date"),inbound_date);
 			
-			JSONObject response = sendHttpRequest(flightsource.get("url"), jsonRequest);
-//			JsonTransformer jsonTransformer
-		    System.out.println(response.get("trip"));
+			String response = sendHttpRequest(flightsource.get("url"), jsonRequest);
+			TransformerFactory transformerFactory = new TransformerFactory();
+			DataTransformer transformer = transformerFactory.createTransformer(response, flightsource);
+			if(transformer == null){
+				System.out.println("the format is not supported");
+			}else{
+//				storeManager.store(transformer.transform());
+				transformer.transform();
+			}
+
 		}
 	}
 }

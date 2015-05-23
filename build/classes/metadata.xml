@@ -17,28 +17,14 @@
 	<flight>
 		<company>
 			<name>wego</name>
-			<request><url>http://localhost:8080/wego/Flights</url><depature>departure_code</depature><arrival>arrival_code</arrival><outbound_date>outbound_date</outbound_date><inbound_date>inbound_date</inbound_date></request>
-			
-			<response>
-				<format>json</format>
-				<flightcode>designator_code</flightcode>
-				<arrivaltime>arrival_time</arrivaltime>
-				<departuretime>departure_time</departuretime>
-				<price>price</price>
-			</response>
+			<request><url>http://localhost:8080/wego/Flights</url><depature>departure_code</depature><arrival>arrival_code</arrival><outbound_date>outbound_date</outbound_date><inbound_date>inbound_date</inbound_date></request>			
+			<response><format>json</format><flightcode>designator_code</flightcode><arrivaltime>arrival_time</arrivaltime><departuretime>departure_time</departuretime><price>price</price></response>
 		</company>
 		
 		<company>
 			<name>skyscanner</name>
-			<request><url>http://localhost:8080/skyscanner/Flights</url><depature>originplace</depature><arrival>destinationplace</arrival><outbound_date>outbounddate</outbound_date><inbound_date>inbounddate</inbound_date></request>
-			
-			<response>
-				<format>xml</format>
-				<flightcode>designator_code</flightcode>
-				<arrivaltime>outbounddeparttime</arrivaltime>
-				<departuretime>inbounddeparttime</departuretime>
-				<price>price</price>
-			</response>
+			<request><url>http://localhost:8080/skyscanner/Flights</url><depature>originplace</depature><arrival>destinationplace</arrival><outbound_date>outbounddate</outbound_date><inbound_date>inbounddate</inbound_date></request>			
+			<response><format>xml</format><flightcode>designator_code</flightcode><arrivaltime>outbounddeparttime</arrivaltime><departuretime>inbounddeparttime</departuretime><price>price</price></response>
 		</company>
 	</flight>
 </desire>
