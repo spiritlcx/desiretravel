@@ -9,7 +9,7 @@
 		<datalake>resources/datalake</datalake>
 	</storage>
 	<dbpedia>
-		<endpoint id="endpoint">http://dbpedia.org/sparql</endpoint>
+		<endpoint id ="endpoint">http://dbpedia.org/sparql</endpoint>
 		<airport><name>airport</name><uri>http://dbpedia.org/ontology/Airport</uri><property><location>http://dbpedia.org/property/location</location><abbreviation>http://dbpedia.org/property/iata</abbreviation></property></airport>
 		<characteristic><name>Museum</name><uri>dbpedia-owl:Museum</uri><property><name>http://dbpedia.org/property/name</name><foundingDate>http://dbpedia.org/ontology/foundingDate</foundingDate><visitors>http://dbpedia.org/property/visitors</visitors><collection>http://dbpedia.org/ontology/collection</collection><location>http://dbpedia.org/property/location</location></property></characteristic>
 	</dbpedia>

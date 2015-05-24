@@ -49,10 +49,14 @@ public class StoreManager {
 		dataset.close();
 	}
 	//store triples to TDB dataset
-	public void store(String subject, String predicate, String object){
+	public void store(ArrayList<String> subjects, String predicate, String object){
 		dataset.begin(ReadWrite.WRITE);
 		Model model = dataset.getDefaultModel();
-		model.add(model.createResource(subject), model.createProperty(predicate), object);
+
+		for(String subject : subjects){
+			model.add(model.createResource(subject), model.createProperty(predicate), object);
+		}
+
 		dataset.commit();
 	}
 	public void store(ArrayList<Triple> triples){

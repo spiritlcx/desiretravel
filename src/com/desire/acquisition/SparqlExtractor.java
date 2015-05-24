@@ -28,7 +28,8 @@ public class SparqlExtractor {
 			}
 			return instances;
 		} catch (Exception e) {
-			System.out.println("query fails");
+			System.out.println(query);
+			System.out.println("fail");
 			return null;
 		} finally {
 			qexec.close();
