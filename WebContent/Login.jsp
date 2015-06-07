@@ -5,14 +5,54 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login</title>
+<title>Welcome to desiretravel</title>
+<link rel="stylesheet" href="./jquery-ui.css">
+<script src="./jquery.js"></script>
+<script src="./jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+  <script>
+  $(function() {
+    $( "#from" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });
+  </script>
 </head>
 <body>
-	<h2>Struts 2 - Login Application</h2>
-	<s:form action="login.action" method="post">
-    	<s:textfield name="username" key="label.username" size="20"/>
-    	<s:password name="password" key="label.password" size="20"/>
-    	<s:submit method="execute" key="label.login" align="center"/>
-	</s:form>
-</body>
+	<form action="getflights" method="get" name="form1">
+		<label for="characteristic">characteristic</label>
+		<input type="text" id="characteristic" name="characteristic">
+	
+		<label for="continent">Continent</label>
+		<input type="text" id="continent" name="continent">
+
+		<label for="yourcity">your city</label>
+		<input type="text" id="yourcity" name="yourcity">
+
+		<br/><br/>
+
+		<label for="from">From</label>
+		<input type="text" id="from" name="startDate">
+		<label for="to">to</label>
+		<input type="text" id="to" name="endDate"></body>
+
+		<label for="days">days</label>
+		<input type="text" id="days" name="days">
+
+		<input type="submit" value = "submit"/>
+	</form>
 </html>

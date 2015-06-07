@@ -18,6 +18,7 @@ public class SparqlExtractor {
 		Query query = QueryFactory.create(rdfgraph);
 		ArrayList<String> instances = new ArrayList<String>();
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, query);
+
 		ResultSet results = null;
 		try {
 			results = qexec.execSelect();

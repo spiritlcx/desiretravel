@@ -9,21 +9,24 @@
 		<datalake>resources/datalake</datalake>
 	</storage>
 	<dbpedia>
-		<endpoint id ="endpoint">http://dbpedia.org/sparql</endpoint>
-		<airport><name>airport</name><uri>http://dbpedia.org/ontology/Airport</uri><property><location>http://dbpedia.org/property/location</location><abbreviation>http://dbpedia.org/property/iata</abbreviation></property></airport>
-		<characteristic><name>Museum</name><uri>dbpedia-owl:Museum</uri><property><name>http://dbpedia.org/property/name</name><foundingDate>http://dbpedia.org/ontology/foundingDate</foundingDate><visitors>http://dbpedia.org/property/visitors</visitors><collection>http://dbpedia.org/ontology/collection</collection><location>http://dbpedia.org/property/location</location></property></characteristic>
+		<endpoint id ="endpoint">http://es.dbpedia.org/sparql</endpoint>
+		<information>
+			<airport><name>airport</name><uri>http://dbpedia.org/ontology/Airport</uri><property><location>http://dbpedia.org/property/location</location><iata>http://dbpedia.org/property/iata</iata></property></airport>
+			<place><name>place</name><uri>http://dbpedia.org/ontology/Place</uri><property>http://dbpedia.org/ontology/country</property></place>
+			<characteristic><name>Museum</name><uri>http://dbpedia.org/ontology/Museum</uri><property><name>http://dbpedia.org/property/name</name><foundingDate>http://dbpedia.org/ontology/foundingDate</foundingDate><visitors>http://dbpedia.org/property/visitors</visitors><collection>http://dbpedia.org/ontology/collection</collection><location>http://dbpedia.org/ontology/city</location></property></characteristic>
+		</information>
 	</dbpedia>
 	
 	<flight>
 		<company>
 			<name>wego</name>
-			<request><url>http://localhost:8080/wego/Flights</url><depature>departure_code</depature><arrival>arrival_code</arrival><outbound_date>outbound_date</outbound_date><inbound_date>inbound_date</inbound_date></request>			
+			<request><url>http://localhost:8080/wego/Flights</url><departure>departure_code</departure><arrival>arrival_code</arrival><outbound_date>outbound_date</outbound_date><inbound_date>inbound_date</inbound_date></request>
 			<response><format>json</format><flightcode>designator_code</flightcode><arrivaltime>arrival_time</arrivaltime><departuretime>departure_time</departuretime><price>price</price></response>
 		</company>
 		
 		<company>
 			<name>skyscanner</name>
-			<request><url>http://localhost:8080/skyscanner/Flights</url><depature>originplace</depature><arrival>destinationplace</arrival><outbound_date>outbounddate</outbound_date><inbound_date>inbounddate</inbound_date></request>			
+			<request><url>http://localhost:8080/skyscanner/Flights</url><departure>originplace</departure><arrival>destinationplace</arrival><outbound_date>outbounddate</outbound_date><inbound_date>inbounddate</inbound_date></request>			
 			<response><format>xml</format><flightcode>designator_code</flightcode><arrivaltime>arrivetime</arrivaltime><departuretime>departtime</departuretime><price>price</price></response>
 		</company>
 	</flight>

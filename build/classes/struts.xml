@@ -11,7 +11,7 @@
     <constant name="struts.custom.i18n.resources" value="ApplicationResources"/>
 
     <package name="default" extends="struts-default" namespace="/">
-        <action name="login" class="desiretravel.LoginAction">
+        <action name="getflights" class="com.desire.servlet.GetFlights">
             <result name="success">Welcome.jsp</result>
             <result name="error">Login.jsp</result>
         </action>

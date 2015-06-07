@@ -24,7 +24,6 @@ public class ApiExtractor {
 	public String sendHttpRequest(String targetURL, JSONObject content){
 		HttpURLConnection connection = null;  
 		  try {
-			  System.out.println(targetURL);
 		    //Create connection
 		    URL url = new URL(targetURL);
 		    connection = (HttpURLConnection)url.openConnection();

@@ -11,6 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.desire.entity.Flight;
 import com.desire.store.StoreManager;
 import com.desire.store.Triple;
 import com.desire.transformer.DataTransformer;
@@ -73,7 +74,8 @@ public class FlightExtractor extends ApiExtractor{
 		}
 	}
 	
-	public void exract(String depature, String arrival, String outbound_date, String inbound_date){
+	public ArrayList<Flight> exract(String depature, String arrival, String inbound_date, String outbound_date){
+		ArrayList<Flight> flights = new ArrayList<Flight>();
 		Iterator it = flightsources.iterator();
 		while(it.hasNext()){
 			HashMap<String, String> flightsource = (HashMap<String, String>)it.next();
@@ -85,17 +87,21 @@ public class FlightExtractor extends ApiExtractor{
 			jsonRequest.put(flightsource.get("inbound_date"),inbound_date);
 			
 			String response = sendHttpRequest(flightsource.get("url"), jsonRequest);
-			TransformerFactory transformerFactory = new TransformerFactory();
-			DataTransformer transformer = transformerFactory.createTransformer(response, flightsource);
-			if(transformer == null){
-				System.out.println("the format is not supported");
-			}else{
-				storeManager.store(transformer.transform());
-//				ArrayList<Triple> triples = transformer.transform();
-				
-//				System.out.println(triples.size());
-			}
-
+			System.out.println(response);
+//			TransformerFactory transformerFactory = new TransformerFactory();
+//			DataTransformer transformer = transformerFactory.createTransformer(response, flightsource);
+//			if(transformer == null){
+//				System.out.println("the format is not supported");
+//			}else{
+//
+//				ArrayList<Triple> triples = transformer.transform();				
+//				storeManager.store(triples);
+//				for(Flight flight: transformer.transformToFlight()){
+//					flights.add(flight);
+//				}
+//			}
 		}
+		storeManager.close();
+		return flights;
 	}
 }

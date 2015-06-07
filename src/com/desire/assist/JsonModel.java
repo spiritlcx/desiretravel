@@ -9,5 +9,5 @@ public class JsonModel {
 		content += "}";
 		content = content.replace(",}", "}");
 		return content;
-	}
+	}	
 }

@@ -3,6 +3,10 @@ package com.desire.transformer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.desire.entity.Flight;
 import com.desire.store.Triple;
 
 public class DataTransformer {
@@ -15,4 +19,8 @@ public class DataTransformer {
 	public ArrayList<Triple> transform(){
 		return null;
 	}
+	public ArrayList<Flight> transformToFlight(){
+		return null;
+	}
+
 }
